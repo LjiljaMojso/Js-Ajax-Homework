@@ -1,29 +1,29 @@
-var breed = document.getElementById('first').value;
-var dog = document.getElementById('dog');
-var img = document.createElement('div');
-var main = document.querySelector('body');
+let breed = document.getElementById('first').value;
+let dog = document.getElementById('dog');
+let img = document.createElement('div');
+let main = document.querySelector('body');
     
-dog.addEventListener('click', function(e) {
+dog.addEventListener('click', () => {
         breed = dog.value;
         getData(breed);
 });
    
-setInterval(function(){
+setInterval(() => {
     getData(breed)}, 5000)
    
-function getData(breed) {	
+const getData = breed => {	
    
-    var newRequest = new XMLHttpRequest();
+    let newRequest = new XMLHttpRequest();
     newRequest.open('GET',"https://dog.ceo/api/breed/" + breed + "/images/random");
     newRequest.onload = function(){
-        var data = JSON.parse(newRequest.responseText).message;
+        let data = JSON.parse(newRequest.responseText).message;
         displayData(data);
-       };
+    };
        
     newRequest.send();
 };
    
-function displayData(data) {
+const displayData = data => {
     main.appendChild(img);
     var pic = '<img src ="' + data + '"/>';
     img.innerHTML = pic;
